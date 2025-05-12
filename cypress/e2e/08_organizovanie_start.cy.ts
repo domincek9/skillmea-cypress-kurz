@@ -1,5 +1,18 @@
+beforeEach(() => {
+  cy.visit('/')
+  cy.log(Cypress.currentTest.title)
+});
+
+
 it('otvorenie aplikácie', () => {
 
-  cy.visit('/board/1')
 
 });
+it('overenie loga', () => {
+
+  
+
+  cy.get('[data-cy="trello-logo"]')
+  .should('be.visible')
+
+})

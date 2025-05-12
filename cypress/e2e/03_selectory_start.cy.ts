@@ -1,5 +1,7 @@
 it('class, id, attr', { baseUrl: null }, () => {
 
-  cy.visit('./mini-apps/shapes.html')
+  cy.visit('./mini-apps/rainbow.html')
+
+  cy.get('h1')
 
 })

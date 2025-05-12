@@ -1,33 +1,23 @@
-it.only('vytvorenie novej karty', () => {
+it('vytvorenie novej karty', () => {
 
-  cy.visit('/board/1')
-
-  cy.get('[data-cy="new-card"]')
-    .click()
-
-  cy.get('[data-cy="new-card-input"]')
-    .type('chlieb{enter}')
-
+  
 });
 
 it('odstránenie karty', () => {
 
-  cy.visit('/board/1')
-
-  cy.get('[data-cy="card"]')
-    .last()
-    .click()
-
-  cy.get('[data-cy="card-detail-delete"]')
-    .click()
-
+  
 });
 
-it('v boarde nie sú žiadne zoznamy', () => {
+it.only('v boarde nie sú žiadne zoznamy', () => {
+
+  cy.intercept('GET', '/list/')
+    .as('getLists')
 
   cy.visit('/board/1')
 
-  cy.get('[data-cy=list]')
+  cy.wait('@getLists')
+
+  cy.get('[data-cy=lists]')
     .should('not.exist')
 
 });

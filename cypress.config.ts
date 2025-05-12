@@ -1,16 +1,18 @@
-const { defineConfig } = require("cypress");
-// import { resetDb } from './cypress/tasks/resetDb'
+import { defineConfig } from "cypress";
+import { resetDb } from './cypress/tasks/resetDb'
 
-module.exports = defineConfig({
+export default defineConfig({
   projectId: 'nvrnry',
   viewportHeight: 550,
   viewportWidth: 660,
   e2e: {
-    setupNodeEvents(on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) {
+    setupNodeEvents(on: Cypress.PluginEvents, config: Cypress.ConfigOptions) {
+
+      
 
       // task
       // on('task', { 
-      //   reset: resetDb
+      // reset: resetDb
       // })
 
       // config
@@ -18,11 +20,14 @@ module.exports = defineConfig({
       // return config
     },
     // specPattern: '**/headless/*.cy.{js,ts}',
-    excludeSpecPattern: '**/headless/*.cy.{js,ts}',
+    //excludeSpecPattern: '**/headless/*.cy.{js,ts}',
     baseUrl: 'http://localhost:3000',
     experimentalWebKitSupport: true,
-    // env: {
-    //   requestMode: true
-    // }
+    scrollBehavior: "center",
+    //env: {
+      //user: 'dominika',
+    //} 
+    
+    }
   }
-});
+);

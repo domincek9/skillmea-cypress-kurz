@@ -1,25 +1,41 @@
+Cypress.Commands.add('dataCy', (selector: string) => {
 
+  Cypress.log({
+    name: 'dataCy',
+    message: selector,
+    consoleProps: () => {
+      return {
+        selector,
+        
+      }
+    }
+  });
+
+  cy.get(`[data-cy="${selector}"]`, { log: false })
+
+});
 
 beforeEach(() => {
 
-  cy.request('POST', '/api/reset')
+  cy.request('POST', '/api/reset');
   cy.request('POST', '/api/boards', { name: 'nákup' })
     .its('body.id')
-    .as('boardId')
+    .as('boardId');
 
-})
+});
 
 it('vlastne prikazy', function () {
 
   cy.visit(`/board/${this.boardId}`)
 
-  cy.get('[data-cy="add-list-input"]')
+  cy.dataCy('add-list-input')
     .type('Potraviny{enter}')
 
-  cy.get('[data-cy="new-card"]')
+  cy.dataCy('new-card')
     .click()
 
-  cy.get('[data-cy="new-card-input"]')
+  cy.dataCy('new-card-input')
     .type('mlieko{enter}')
 
 });
+
